@@ -9,11 +9,22 @@ import {
   TouchableOpacity,
   Button
 } from "react-native";
-import styles from "./style";
+import styled from "styled-components/native";
 import { connect } from "react-redux";
 import { increment } from "../../actions";
 
-class Home extends Component {
+const StyledView = styled.View`
+  background-color: papayawhip;
+  height: 150px;
+  padding: 50px;
+  background: orange;
+`;
+
+const StyledText = styled.Text`
+  color: palevioletred;
+`;
+
+class StyledHome extends Component {
   constructor(props) {
     super(props);
   }
@@ -26,23 +37,16 @@ class Home extends Component {
     const i = this.props.i;
 
     return (
-      <View style={{ height: 150, backgroundColor: "grey", padding: 50 }}>
+      <StyledView>
         <Button
           onPress={() => {
             increment();
-            navigation.navigate("NotHome");
+            navigation.navigate("Home");
           }}
-          title="You are at home"
+          title="You are at Styled Home"
         />
-        <Button
-          onPress={() => {
-            increment();
-            navigation.navigate("StyledHome");
-          }}
-          title="Go To StyledHome"
-        />
-        <Text>{i}</Text>
-      </View>
+        <StyledText>{i}</StyledText>
+      </StyledView>
     );
   }
 }
@@ -61,4 +65,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
+)(StyledHome);
